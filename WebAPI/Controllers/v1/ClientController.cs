@@ -18,9 +18,15 @@ namespace WebAPI.Controllers.v1
         }
 
         [HttpGet()]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] GetAllClientsParameters filters)
         {
-            return Ok(await Mediator.Send(new GetAllClientsQuery()));
+            return Ok(await Mediator.Send(new GetAllClientsQuery()
+            {
+                FilterByLastName = filters.FilterByLastName,
+                FilterByName = filters.FilterByName,
+                PageNumber = filters.PageNumber,
+                PageSize = filters.PageSize
+            }));
         }
 
         //POST api/<controller>

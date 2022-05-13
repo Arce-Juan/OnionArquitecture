@@ -12,7 +12,6 @@ namespace Application.Mappings
         {
             #region DTOs
             CreateMap<Client, ClientDto>();
-            CreateMap<List<Client>, List<ClientDto>>();
             #endregion
 
             #region Commands

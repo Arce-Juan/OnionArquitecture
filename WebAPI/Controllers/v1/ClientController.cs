@@ -16,9 +16,9 @@ namespace WebAPI.Controllers.v1
         {
             return Ok(await Mediator.Send(new GetClientByIdQuery() { Id = id }));
         }
-        
+
         [HttpGet()]
-        public async Task<IActionResult> GetAll(int id)
+        public async Task<IActionResult> GetAll()
         {
             return Ok(await Mediator.Send(new GetAllClientsQuery()));
         }

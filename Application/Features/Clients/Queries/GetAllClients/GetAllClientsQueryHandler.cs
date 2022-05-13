@@ -24,7 +24,7 @@ namespace Application.Features.Clients.Queries.GetAllClients
 
         public async Task<Response<List<ClientDto>>> Handle(GetAllClientsQuery request, CancellationToken cancellationToken)
         {
-            var colecction = await _repositoryAsync.GetBySpecAsync<List<Client>>(null, cancellationToken);
+            var colecction = await _repositoryAsync.ListAsync(cancellationToken);
             var listClientDto = _mapper.Map<List<ClientDto>>(colecction);
 
             return new Response<List<ClientDto>>(listClientDto);

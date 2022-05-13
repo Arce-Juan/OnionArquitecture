@@ -1,5 +1,5 @@
-﻿using MediatR;
-using Application.Wrappers;
+﻿using Application.Wrappers;
+using MediatR;
 using System;
 
 namespace Application.Features.Clients.Commands.CreateClientCommand

@@ -8,11 +8,11 @@ namespace Application.Features.Clients.Commands.CreateClientCommand
         {
             RuleFor(p => p.LastName)
                 .NotEmpty().WithMessage("{PropertyName} no debe ser vacio.")
-                .MaximumLength(5).WithMessage("{PropertyName} no exceder de {MaxLength} caracteres.");
+                .MaximumLength(20).WithMessage("{PropertyName} no exceder de {MaxLength} caracteres.");
 
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} no debe ser vacio.")
-                .MaximumLength(5).WithMessage("{PropertyName} no exceder de {MaxLength} caracteres.");
+                .MaximumLength(20).WithMessage("{PropertyName} no exceder de {MaxLength} caracteres.");
 
             RuleFor(p => p.DateBirth)
                 .NotEmpty().WithMessage("{PropertyName} no debe ser vacio.");

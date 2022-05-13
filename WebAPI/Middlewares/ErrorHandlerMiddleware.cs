@@ -36,6 +36,7 @@ namespace WebAPI.Middlewares
                         break;
                     case Application.Exceptions.ValidationExceptionApp e: // custom aplication error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        responseModel.Errors = e.Errors;
                         break;
                     case KeyNotFoundException e: // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;

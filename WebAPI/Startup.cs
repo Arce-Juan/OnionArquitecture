@@ -26,6 +26,7 @@ namespace WebAPI
             services.AddApplicationLayer();
             services.AddSharedInfraestructure(Configuration);
             services.AddPersistenceInfraestructure(Configuration);
+            services.AddApiVersioningExtension();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

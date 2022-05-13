@@ -1,24 +1,36 @@
 ﻿using Application.Features.Clients.Commands.CreateClientCommand;
+using Application.Features.Clients.Commands.DeleteClientCommand;
+using Application.Features.Clients.Commands.UpdateClientCommand;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers.v1
 {
-    /*
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClientController : ControllerBase
-    {
-    }
-    */
     [ApiVersion("1.0")]
     public class ClientController : BaseApiController
     {
-        //POST
+        //POST api/<controller>
         [HttpPost]
         public async Task<IActionResult> Post(CreateClientCommand command)
         {
             return Ok(await Mediator.Send(command));
+        }
+
+        //POST api/<controller>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, UpdateClientCommand command)
+        {
+            if (id != command.Id)
+                return BadRequest();
+
+            return Ok(await Mediator.Send(command));
+        }
+
+        //POST api/<controller>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await Mediator.Send(new DeleteClientCommand() { Id = id}));
         }
     }
 }

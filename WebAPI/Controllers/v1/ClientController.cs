@@ -5,6 +5,8 @@ using Application.Features.Clients.Queries.GetClientById;
 using Application.Features.Clients.Queries.GetAllClients;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace WebAPI.Controllers.v1
 {
@@ -14,13 +16,21 @@ namespace WebAPI.Controllers.v1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
+
+            
             return Ok(await Mediator.Send(new GetClientByIdQuery() { Id = id }));
         }
 
         [HttpGet()]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] GetAllClientsParameters filters)
         {
-            return Ok(await Mediator.Send(new GetAllClientsQuery()));
+            return Ok(await Mediator.Send(new GetAllClientsQuery()
+            {
+                FilterByLastName = filters.FilterByLastName,
+                FilterByName = filters.FilterByName,
+                PageNumber = filters.PageNumber,
+                PageSize = filters.PageSize
+            }));
         }
 
         //POST api/<controller>

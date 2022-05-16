@@ -31,7 +31,7 @@ namespace Application.Features.Clients.Queries.GetAllClients
             var colecction = await _repositoryAsync.ListAsync(spec, cancellationToken);
             var listClientDto = _mapper.Map<List<ClientDto>>(colecction);
 
-            return new List<ClientDto>(listClientDto);
+            return new PagedResponse<List<ClientDto>>(listClientDto, request.PageNumber, request.PageSize);
         }
 
         /*

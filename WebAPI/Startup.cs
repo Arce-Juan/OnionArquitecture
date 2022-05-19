@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Identity;
 
 namespace WebAPI
 {
@@ -24,6 +25,7 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationLayer();
+            services.AddIdentityInfraestructure(Configuration);
             services.AddSharedInfraestructure(Configuration);
             services.AddPersistenceInfraestructure(Configuration);
             services.AddApiVersioningExtension();
@@ -47,7 +49,8 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseErrorHandlingMiddleware();
 

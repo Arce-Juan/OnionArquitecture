@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers.v1
 {
@@ -33,6 +34,7 @@ namespace WebAPI.Controllers.v1
 
         //POST api/<controller>
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post(CreateClientCommand command)
         {
             return Ok(await Mediator.Send(command));
@@ -40,6 +42,7 @@ namespace WebAPI.Controllers.v1
 
         //POST api/<controller>
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> Put(int id, UpdateClientCommand command)
         {
             command.Id = id;
@@ -48,6 +51,7 @@ namespace WebAPI.Controllers.v1
 
         //POST api/<controller>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteClientCommand() { Id = id}));

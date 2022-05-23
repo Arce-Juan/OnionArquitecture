@@ -21,6 +21,7 @@ namespace WebAPI.Controllers.v1
         }
 
         [HttpGet()]
+        [Authorize(Roles = "BASIC")]
         public async Task<IActionResult> GetAll([FromQuery] GetAllClientsParameters filters)
         {
             return Ok(await Mediator.Send(new GetAllClientsQuery()
@@ -34,7 +35,7 @@ namespace WebAPI.Controllers.v1
 
         //POST api/<controller>
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "BASIC")]
         public async Task<IActionResult> Post(CreateClientCommand command)
         {
             return Ok(await Mediator.Send(command));
@@ -42,7 +43,7 @@ namespace WebAPI.Controllers.v1
 
         //POST api/<controller>
         [HttpPut("{id}")]
-        [Authorize]
+        [Authorize(Roles = "BASIC")]
         public async Task<IActionResult> Put(int id, UpdateClientCommand command)
         {
             command.Id = id;
